@@ -1,0 +1,15 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+ 
+int main() {
+  int n = 0;
+  double z;
+  double sum = 0;
+  while (cin >> z) {
+    sum += z;
+    n++;
+  }
+  cout << std::fixed << std::setprecision(2) << sum / n;
+  return 0;
+}
