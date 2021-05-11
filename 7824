@@ -1,0 +1,49 @@
+#include <iostream>
+#include <cstring>
+#include <set>
+#include <vector>
+#include <algorithm>
+using namespace std;
+ 
+int main() {
+    string current_number;
+    string ansver = "";
+    cin >> current_number;
+    set<char> digits_set;    
+    for (int i = 0; i < current_number.size(); i++){
+        char element = current_number[i];
+        digits_set.insert(element);
+    }
+    std::vector<char> digits;
+    for (char i : digits_set){
+        digits.push_back(i);
+    }
+    std::reverse(digits.begin(), digits.end());    while (digits.size() != 1){    
+        for (int i=0; i < digits.size(); i++){   
+            char local_max = digits[i];
+            int position = current_number.find(local_max);
+            string new_number;
+            for (int j = position; j < current_number.size(); j++){   
+                new_number += current_number[j];
+            }
+            set<char> digits_on_the_right;
+            for (int j = 0; j < new_number.size(); j++){    
+                digits_on_the_right.insert(new_number[j]);
+            }
+            if (digits.size() == digits_on_the_right.size()){   
+                ansver += local_max;
+                digits.erase(digits.begin() + i);
+                string number_without_digit = "";
+                for (int t = 0; t < new_number.size(); t++){    
+                    if (new_number[t] != local_max){
+                        number_without_digit += new_number[t];
+                    }
+                }
+                current_number = number_without_digit;
+                break;    
+            }
+        }
+    }
+    cout << ansver + digits[0];    
+    return 0;
+}
