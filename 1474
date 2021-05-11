@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+ 
+int main() {
+    int h1, m1, s1, h2, m2, s2;
+    int sum1, sum2, sec, time1, time2;
+    int h3, m3, s3;
+    cin >> h1 >> m1 >> s1 >> h2 >> m2 >> s2;
+    sum1 = h1 + m1 * 24 + s1 * 24 * 60;
+    sum2 = h2 + m2 * 24 + s2 * 24 * 60;
+    sec = (sum2 - sum1 + 86400) % 86400;
+    time1 = 3600 * h1 + 60 * m1 + s1;
+    time2 = (time1 + sec) % 86400;
+    s3 = time2 % 60;
+    m3 = ((time2 - s3) / 60) % 60;
+    h3 = (time2 - m3 * 60 - s3) / 3600;
+    cout << h3 << " " << m3 << " " << s3;
+    return 0;
+}
